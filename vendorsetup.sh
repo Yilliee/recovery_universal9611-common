@@ -31,17 +31,19 @@ export_build_vars(){
 	export FOX_USE_TWRP_RECOVERY_IMAGE_BUILDER=1
 	export LC_ALL="C"
 	export OF_VANILLA_BUILD=1
-	export OF_NO_SAMSUNG_SPECIAL=1
-	export FOX_DYNAMIC_SAMSUNG_FIX=1
-	#export FOX_REMOVE_AAPT=1
-	#export FOX_REMOVE_BASH=1
 	export FOX_RECOVERY_INSTALL_PARTITION="/dev/block/by-name/recovery"
+	# Skip the selinux enforce patches for a samsung device.
+	export OF_NO_SAMSUNG_SPECIAL=1
+	# Same as setting TW_USE_SAMSUNG_HAPTICS
+	# to true in makefile.
+	#export OF_USE_SAMSUNG_HAPTICS=1
+
+	# Only set this to 1, 2 or 3.
+	# Incase you don't wanna use it,
+	# comment it out or unset it from the env.
+	export FOX_CUSTOM_BINS_TO_SDCARD=1
 
 	### Extra build vars ###
-	#export FOX_REPLACE_BUSYBOX_PS=1
-	#export FOX_REPLACE_TOOLBOX_GETPROP=1
-	#export FOX_USE_TAR_BINARY=1
-	#export FOX_USE_NANO_EDITOR=1
 	export OF_USE_MAGISKBOOT=1
 	export OF_USE_MAGISKBOOT_FOR_ALL_PATCHES=1
 	#export FOX_RESET_SETTINGS=0
@@ -49,30 +51,42 @@ export_build_vars(){
 	export OF_FL_PATH1="/system/flashlight"
 	export OF_FL_PATH2=""
 	export OF_FLASHLIGHT_ENABLE=1
-	export FOX_VERSION="R11.1_1"
 	export OF_HIDE_NOTCH=1
 	export OF_CLOCK_POS=1
 	export OF_ALLOW_DISABLE_NAVBAR=0
 	export OF_USE_SYSTEM_FINGERPRINT=1
 	export OF_USE_TWRP_SAR_DETECT=1
 	export OF_QUICK_BACKUP_LIST="/super;/boot;/vbmeta;/vbmeta_samsung;/dtbo;/efs;/sec_efs;/modem"
-	#export FOX_USE_UNZIP_BINARY=1
 	export FOX_DISABLE_APP_MANAGER=1
-	#export FOX_USE_XZ_UTILS=1
 	export OF_STATUS_INDENT_LEFT="48"
 	export OF_STATUS_INDENT_RIGHT="48"
 	export OF_USE_GREEN_LED=0
+	export OF_USE_HEXDUMP=1
 	export OF_SUPPORT_PRE_FLASH_SCRIPT=1
+	export OF_ENABLE_LPTOOLS=1
+	export OF_DEVICE_WITHOUT_PERSIST=1
+	export OF_DONT_KEEP_LOG_HISTORY=1
 
-	#R11
+	if [ "$FOX_CUSTOM_BINS_TO_SDCARD" != "" ]; then
+		export FOX_USE_NANO_EDITOR=1
+		export FOX_USE_SED_BINARY=1
+		export FOX_USE_TAR_BINARY=1
+		export FOX_USE_UNZIP_BINARY=1
+		export FOX_USE_XZ_UTILS=1
+		export FOX_REPLACE_BUSYBOX_PS=1
+		export FOX_REPLACE_TOOLBOX_GETPROP=1
+	else
+		export FOX_DYNAMIC_SAMSUNG_FIX=1
+	fi
+
+	# R11
 	export FOX_R11=1
 	export FOX_BUILD_TYPE=Beta
+	export FOX_VERSION="R11.1_1"
 
-	# maximum permissible splash image size (in kilobytes); do *NOT* increase!
+	# maximum permissible splash image size
+	# (in kilobytes); do *NOT* increase!
 	export OF_SPLASH_MAX_SIZE=104
-
-	# run a process after formatting data to work-around MTP issues
-	export OF_RUN_POST_FORMAT_PROCESS=1
 
 	# Custom pic for maintainer's about section info
 	export OF_MAINTAINER_AVATAR="$PWD/device/samsung/universal9611-common/maintainer.png"
