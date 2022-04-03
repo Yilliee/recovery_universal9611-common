@@ -101,6 +101,10 @@ TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 # Haptics
 TW_USE_SAMSUNG_HAPTICS := true
 
+# Flashlight (PBRP Specific)
+PB_TORCH_PATH := "/sys/devices/virtual/camera/flash/rear_flash"
+PB_TORCH_MAX_BRIGHTNESS := 1004
+
 # ANDROID VERIFIED BOOT
 BOARD_AVB_ENABLE := true
 BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
