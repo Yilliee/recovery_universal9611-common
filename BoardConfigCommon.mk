@@ -103,6 +103,22 @@ TARGET_SYSTEM_PROP += $(COMMON_PATH)/system.prop
 # Haptics
 TW_USE_SAMSUNG_HAPTICS := true
 
+# Shrp specific build flags
+SHRP_REC := /dev/block/by-name/recovery
+SHRP_DARK := true
+SHRP_STATUSBAR_RIGHT_PADDING := 30
+SHRP_STATUSBAR_LEFT_PADDING := 30
+SHRP_REC_TYPE := SAR
+SHRP_DEVICE_TYPE := A_Only
+SHRP_MAINTAINER := "Yillié"
+SHRP_INTERNAL := /sdcard
+SHRP_EXTERNAL := /external_sd
+SHRP_OTG := /usb_otg
+SHRP_FLASH := 1
+SHRP_CUSTOM_FLASHLIGHT := true
+SHRP_FONP_1 := /sys/devices/virtual/camera/flash/rear_flash
+SHRP_FLASH_MAX_BRIGHTNESS := 1004
+
 # ANDROID VERIFIED BOOT
 BOARD_AVB_ENABLE := true
 BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
