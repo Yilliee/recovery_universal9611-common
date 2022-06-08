@@ -1,5 +1,6 @@
 on fs && property:sys.usb.configfs=1
     mkdir /config/usb_gadget/g1/functions/ffs.mtp
+    symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
 
 on fs
     mkdir /dev/usb-ffs/mtp 0770 mtp mtp
