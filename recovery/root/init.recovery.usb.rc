@@ -1,4 +1,4 @@
-on init && property:sys.usb.configfs=1
+on init
     mount configfs none /config
     mkdir /config/usb_gadget/g1 0770 shell shell
     write /config/usb_gadget/g1/idVendor 0x18D1
@@ -80,7 +80,6 @@ on property:sys.usb.config=sideload && property:sys.usb.ffs.ready=1 && property:
     write /config/usb_gadget/g1/idProduct 0x04E8
     write /config/usb_gadget/g1/idVendor 0xD001
     write /sys/class/android_usb/android0/functions "adb"
-    symlink /config/usb_gadget/g1/functions/ffs.adb /config/usb_gadget/g1/configs/b.1/f1
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
     write /config/usb_gadget/g1/UDC ${sys.usb.controller}
     write /sys/class/android_usb/android0/enable 1
@@ -108,10 +107,8 @@ on property:sys.usb.ffs.ready=1 && property:sys.usb.config=mtp,adb && property:s
 
 on property:sys.usb.config=adb && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
     write /sys/class/android_usb/android0/functions adb
-    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "Conf 1"
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
 
 on property:sys.usb.config=fastboot && property:sys.usb.ffs.ready=1 && property:sys.usb.configfs=1
     write /sys/class/android_usb/android0/functions fastboot
-    write /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration "Conf 1"
     symlink /config/usb_gadget/g1/configs/b.1 /config/usb_gadget/g1/os_desc/b.1
