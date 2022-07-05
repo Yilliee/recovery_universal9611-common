@@ -14,3 +14,6 @@ PRODUCT_PACKAGES += \
 
 # Lpdump
 TW_EXCLUDE_LPDUMP := true
+
+# Python prebuilts
+TW_EXCLUDE_PYTHON := true
