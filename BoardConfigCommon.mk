@@ -44,7 +44,6 @@ BOARD_MKBOOTIMG_ARGS += --ramdisk_offset 0x01000000
 BOARD_MKBOOTIMG_ARGS += --tags_offset 0x00000100
 BOARD_MKBOOTIMG_ARGS += --header_version 2
 BOARD_INCLUDE_RECOVERY_DTBO := true
-BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 
 ifeq ($(BUILD_KERNEL_FROM_SOURCE), true)
         TARGET_KERNEL_ARCH := arm64
@@ -54,6 +53,8 @@ ifeq ($(BUILD_KERNEL_FROM_SOURCE), true)
         BOARD_CUSTOM_BOOTIMG_MK := $(COMMON_PATH)/kernel/mkbootimg.mk
         TARGET_KERNEL_CLANG_COMPILE := true
         TARGET_KERNEL_CLANG_VERSION := r353983c1
+else
+	BOARD_INCLUDE_DTB_IN_BOOTIMG := true
 endif
 
 # Platform
